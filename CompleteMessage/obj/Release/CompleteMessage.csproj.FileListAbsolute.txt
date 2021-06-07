@@ -8,3 +8,13 @@ C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Release\CompleteM
 C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Release\CompleteMessage.exe
 C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Release\CompleteMessage.pdb
 C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Release\CompleteMessage.csprojAssemblyReference.cache
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\bin\Release\CompleteMessage.exe.config
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\bin\Release\CompleteMessage.exe
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\bin\Release\CompleteMessage.pdb
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\bin\Release\Newtonsoft.Json.dll
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\bin\Release\Newtonsoft.Json.xml
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\obj\Release\CompleteMessage.csprojAssemblyReference.cache
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\obj\Release\CompleteMessage.csproj.CoreCompileInputs.cache
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\obj\Release\CompleteMessage.csproj.CopyComplete
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\obj\Release\CompleteMessage.exe
+C:\Users\jvoss\Documents\GitHub\CompleteMessage_Public\CompleteMessage\obj\Release\CompleteMessage.pdb

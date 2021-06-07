@@ -15,6 +15,8 @@ namespace CompleteMessage
     {
         static void Main(string[] args)
         {
+            string sender = "your name here";
+
             // getting locations of input files
             Console.WriteLine("Enter location of sms backup:");
             //string smsDirectory = Console.ReadLine().Replace("\"", " ");
@@ -47,7 +49,7 @@ namespace CompleteMessage
             MessagingArchiveImport.ReadHangoutsJson(hangoutsDirectory, messages, true);
             MessagingArchiveImport.ReadMessengerJson(messengerDirectory, messages, true);
             MessagingArchiveImport.ReadInstagramJson(instaDirectory, messages, true);
-            MessagingArchiveImport.ReadSmsXml(smsDirectory, messages, true);
+            MessagingArchiveImport.ReadSmsXml(smsDirectory, messages, true, sender);
             MessagingArchiveImport.CorrectAliases(aliasDirectory, messages, true);
 
             if(false)
@@ -162,7 +164,7 @@ namespace CompleteMessage
                             if (smsData[lineIndex].Length > 29 && smsData[lineIndex].Substring(0, 29) == "  <sms protocol=\"0\" address=\"")
                             {
                                 // checks message type to see if I was the sender, or if they were
-                                string sender = "James Voss";
+                                //string sender = ;
                                 if (GetValueFromKey(smsData[lineIndex], "type") == "1")
                                 {
                                     sender = GetValueFromKey(smsData[lineIndex], "contact_name");
@@ -313,7 +315,7 @@ namespace CompleteMessage
                 if(messages[messageIndex].contacts.Count() < 3)
                 {
                     string contact = messages[messageIndex].contacts[0];
-                    if(contact == "James Voss")
+                    if(contact == sender)
                     {
                         if (messages[messageIndex].contacts.Count() > 1)
                         {
@@ -331,7 +333,7 @@ namespace CompleteMessage
             int days = 360 * 6;
             Dictionary<string, int[]> totalByDay = new Dictionary<string, int[]>();
             // loop for each contact
-            using (StreamWriter sw = new StreamWriter("Leigh Conversation 201.txt"))
+            using (StreamWriter sw = new StreamWriter("Output Conversation 201.txt"))
             {
                 for (int contactIndex = 0; contactIndex < messagesByContact.Count(); contactIndex++)
                 {
@@ -348,9 +350,9 @@ namespace CompleteMessage
                         if (arrayIndex > 0 && arrayIndex < days && messagesByContact.ElementAt(contactIndex).Value[messageIndex].contacts.Count() < 3)
                         {
                             totalByDay[currentContact][arrayIndex]++;
-                            if (arrayIndex == 1896 && messagesByContact.ElementAt(contactIndex).Key == "Leigh Woodward")
+                            if (arrayIndex == 1896 && messagesByContact.ElementAt(contactIndex).Key == "Person A")
                             {
-                                if (messagesByContact.ElementAt(contactIndex).Value[messageIndex].sender == "James Voss")
+                                if (messagesByContact.ElementAt(contactIndex).Value[messageIndex].sender == "Person B")
                                 {
                                     sw.Write(new DateTime(messagesByContact.ElementAt(contactIndex).Value[messageIndex].ticks).TimeOfDay + " J:\t\t");
                                 }
@@ -374,7 +376,7 @@ namespace CompleteMessage
             {
                 Graph graph = new Graph(1920 * 2, 1080);
                 graph.xDivCount = 72;
-                graph.title = "Direct Messages Per Day Between James Voss and " + totalByDay.ElementAt(contactIndex).Key + " (hangouts, sms, messenger, instagram, 2018 - present)";
+                graph.title = "Direct Messages Per Day Between <owner> and " + totalByDay.ElementAt(contactIndex).Key + " (hangouts, sms, messenger, instagram, 2018 - present)";
                 graph.xLabel = "days previous to today";
                 graph.yLabel = "Message Count";
                 int firstMessageIndex = -1;
@@ -409,14 +411,13 @@ namespace CompleteMessage
                 }
             }//*/
 
-            //plotting kelly's and esther messages totals by day 
             {
-                /*int kellyTotal = 0;
-                int estherTotal = 0;
-                for (int i = 0; i < totalByDay["Kelly Chang"].Count(); i++)
+                /*int aTotal = 0;
+                int bTotal = 0;
+                for (int i = 0; i < totalByDay["Person A"].Count(); i++)
                 {
-                    estherTotal += totalByDay["Esther Shuchardt"][i];
-                    kellyTotal += totalByDay["Kelly Chang"][i];
+                    bTotal += totalByDay["Person B"][i];
+                    aTotal += totalByDay["Person A"][i];
                 }
 
                 Graph graph = new Graph(1920 * 2, 1080);
@@ -433,8 +434,8 @@ namespace CompleteMessage
                 Color[] plotColors = new Color[] { Color.Black, Color.Red, Color.Cyan, Color.Yellow, Color.Blue, Color.Green, Color.Magenta, Color.MediumTurquoise, Color.Gray, Color.Tan };
 
                 graph.yDivCount = 10;
-                graph.BarY(ConvertArrayToFloat.Int(totalByDay["Kelly Chang"]), Color.FromArgb(64, 255, 0, 0), 1, "Kelly Chang     ( n = " + kellyTotal + " )");
-                graph.BarY(ConvertArrayToFloat.Int(totalByDay["Esther Shuchardt"]), Color.FromArgb(64, 0, 0, 255), 1, "Esther Schuchardt ( n = " + estherTotal + " )");
+                graph.BarY(ConvertArrayToFloat.Int(totalByDay["Person A"]), Color.FromArgb(64, 255, 0, 0), 1, "Person A     ( n = " + aTotal + " )");
+                graph.BarY(ConvertArrayToFloat.Int(totalByDay["Person B"]), Color.FromArgb(64, 0, 0, 255), 1, "Person B( n = " + bTotal + " )");
                 graph.DrawOutsideGraph();
                 graph.plot.Save("plot.png", ImageFormat.Png);*/
             }
@@ -476,7 +477,7 @@ namespace CompleteMessage
                 int largestFoundIndex = 0;
                 for (int contactIndex = 0; contactIndex < totalByDay.Count(); contactIndex++)
                 {
-                    if(!used[contactIndex] && totalByDay.ElementAt(contactIndex).Key != "James Voss")
+                    if(!used[contactIndex] && totalByDay.ElementAt(contactIndex).Key != "Owner")
                     {
                         int sumOfCurrentContact = 0;
                         for (int j = 0; j < totalByDay.ElementAt(contactIndex).Value.Count(); j++)
@@ -1035,17 +1036,17 @@ namespace CompleteMessage
             return messages;
         }
 
-        public static List<Message> ReadSmsXml(string smsDirectory)
+        public static List<Message> ReadSmsXml(string smsDirectory, string sender)
         {
-            return ReadSmsXml(smsDirectory, new List<Message>(), false);
+            return ReadSmsXml(smsDirectory, new List<Message>(), false, sender);
         }
 
-        public static List<Message> ReadSmsXml(string smsDirectory, List<Message> messages)
+        public static List<Message> ReadSmsXml(string smsDirectory, List<Message> messages, string sender)
         {
-            return ReadSmsXml(smsDirectory, messages, false);
+            return ReadSmsXml(smsDirectory, messages, false, sender);
         }
 
-        public static List<Message> ReadSmsXml(string smsDirectory, List<Message> messages, bool verbose)
+        public static List<Message> ReadSmsXml(string smsDirectory, List<Message> messages, bool verbose, string sender)
         {
             if (Directory.Exists(smsDirectory))
             {
@@ -1067,7 +1068,7 @@ namespace CompleteMessage
                         if (smsData[lineIndex].Length > 29 && smsData[lineIndex].Substring(0, 29) == "  <sms protocol=\"0\" address=\"")
                         {
                             // checks message type to see if I was the sender, or if they were
-                            string sender = "James Voss";
+                            //string sender = "James Voss";
                             if (GetValueFromKey(smsData[lineIndex], "type") == "1")
                             {
                                 sender = GetValueFromKey(smsData[lineIndex], "contact_name");
