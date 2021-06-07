@@ -1,0 +1,10 @@
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Debug\CompleteMessage.csprojAssemblyReference.cache
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Debug\CompleteMessage.csproj.CoreCompileInputs.cache
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\bin\Debug\CompleteMessage.exe.config
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\bin\Debug\CompleteMessage.exe
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\bin\Debug\CompleteMessage.pdb
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Debug\CompleteMessage.csproj.CopyComplete
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Debug\CompleteMessage.exe
+C:\Users\Greg\source\repos\CompleteMessage\CompleteMessage\obj\Debug\CompleteMessage.pdb
