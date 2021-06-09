@@ -19,24 +19,24 @@ namespace CompleteMessage
 
             // getting locations of input files
             Console.WriteLine("Enter location of sms backup:");
-            //string smsDirectory = Console.ReadLine().Replace("\"", " ");
-            string smsDirectory = "E:\\Google Data Takeout 19 9 2019\\sms";
+            string smsDirectory = Console.ReadLine().Replace("\"", " ");
+            //string smsDirectory = "G:\\Google Data Takeout 19 9 2019\\sms";
 
             Console.WriteLine("Enter location of instagram backup:");
-            //string instaDirectory = Console.ReadLine().Replace("\"", " ");
-            string instaDirectory = "E:\\Google Data Takeout 19 9 2019\\instagram\\glarson383_20200206_part_1\\messages.json";
+            string instaDirectory = Console.ReadLine().Replace("\"", " ");
+            //string instaDirectory = "G:\\Google Data Takeout 19 9 2019\\instagram\\glarson383_20200206_part_1\\messages.json";
 
             Console.WriteLine("Enter location of messenger backup: (facebook-genericname123465\\messages\\inbox\\)");
-            //string messengerDirectory = Console.ReadLine().Replace("\"", " ");
-            string messengerDirectory = "E:\\Google Data Takeout 19 9 2019\\facebook-greglarson718689\\messages\\inbox";
+            string messengerDirectory = Console.ReadLine().Replace("\"", " ");
+            //string messengerDirectory = "G:\\Google Data Takeout 19 9 2019\\facebook-greglarson718689\\messages\\inbox";
 
             Console.WriteLine("enter location of hangouts backup:");
-            //string hangoutsDirectory = Console.ReadLine().Replace("\"", " ");
-            string hangoutsDirectory = "E:\\Google Data Takeout 19 9 2019\\Hangouts\\Hangouts.json";
+            string hangoutsDirectory = Console.ReadLine().Replace("\"", " ");
+            //string hangoutsDirectory = "G:\\Google Data Takeout 19 9 2019\\Hangouts\\Hangouts.json";
 
             Console.WriteLine("enter location of alias list (format .tsv`1 : given name, manual given name, alias a, alias b, alias c, alias...)");
-            //string aliasDirectory = Console.ReadLine().Replace("\"", " ");
-            string aliasDirectory = "E:\\Google Data Takeout 19 9 2019\\contactAliasesFULLManual.tsv";
+            string aliasDirectory = Console.ReadLine().Replace("\"", " ");
+            //string aliasDirectory = "G:\\Google Data Takeout 19 9 2019\\contactAliasesFULLManual.tsv";
 
             //smsDirectory = "";
             //instaDirectory = "";
@@ -45,14 +45,13 @@ namespace CompleteMessage
             //aliasDirectory = "";
             
             List<Message> messages = new List<Message>();
-
             MessagingArchiveImport.ReadHangoutsJson(hangoutsDirectory, messages, true);
             MessagingArchiveImport.ReadMessengerJson(messengerDirectory, messages, true);
             MessagingArchiveImport.ReadInstagramJson(instaDirectory, messages, true);
             MessagingArchiveImport.ReadSmsXml(smsDirectory, messages, true, sender);
             MessagingArchiveImport.CorrectAliases(aliasDirectory, messages, true);
 
-            if(false)
+            if(true)
             {
                 Console.WriteLine("reading hangouts data");
                 if (hangoutsDirectory != "")
@@ -677,6 +676,8 @@ namespace CompleteMessage
                 graph.DrawOutsideGraph();
                 graph.plot.Save("plot.png", ImageFormat.Png);*/
             }
+            Console.WriteLine("end of program, press any key to exit");
+            Console.ReadLine();
         }
 
         static string GetValueFromKey (string inputData, string key)
